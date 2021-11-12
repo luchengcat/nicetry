@@ -2,13 +2,6 @@
 global D K omega
 
 
-dxx=0.01;
-dxy=0.002;
-dyy=0.01;
-wxx_2=355.3;
-wxy=70.99;
-wyy_2=532.9;
-omiga=0.1;   %100rad/s
 D=[dxx dxy;dxy dyy];
 K=[wxx_2 wxy;wxy wyy_2];
 omega=[0 -omiga;omiga 0];
@@ -50,17 +43,7 @@ global delta  s1  b e de
 b=0.5;
 
 
-g=[25 0;0 32];
-gama=[10 0; 0 10];
-a=1.2;
 
-s1=de+g*e+gama*abs(e).^a.*sign(e);
-
-delta = abs(s1).^b.*sign(s1); 
-
-sys(1)=delta(1);
-
-sys(2)=delta(2); 
 
 function sys=mdlOutputs(t,x,u)
 global  lama  s e de  q dq  s2  D K omega delta
@@ -109,8 +92,5 @@ ut=lama*de+ddqd+((D+2*omega)*dq+K*q)+xite*sign(s)+lama*delta+g*de+(gama*a*abs(e)
 
 sys(1)=ut(1);
 sys(2)=ut(2);
-
-sys(3)=s(1);
-sys(4)=s(2);
 
 
